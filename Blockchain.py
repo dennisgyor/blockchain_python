@@ -11,7 +11,8 @@ class Blockchain(object):
         self.current_transactions = []
         self.chain = []
 
-        '''Create genesis block'''
+        '''Create genesis block. You need the original hash to build the
+        rest of the Blockchain.'''
         self.new_block(previous_hash=1, proof=100)
 
     def new_block(self, proof, previous_hash=None):
