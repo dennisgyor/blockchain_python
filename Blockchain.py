@@ -53,6 +53,23 @@ class Blockchain(object):
             'amount': amount,
         })
 
+        # return self.last_block['index'] + 1
+
+    def valid_transaction(self, current_transactions, state):
+        """A valid transaction must sum to 0."""
+        if sum(current_transactions.values()) is not 0:
+            return False
+
+        for key in current_transactions.keys():
+            if key in state.keys():
+                account_balance = state[key]
+            else:
+                account_balance = 0
+
+            if account_balance + current_transactions[key] < 0:
+                return False
+
+        return True
         return self.last_block['index'] + 1
 
     @property
